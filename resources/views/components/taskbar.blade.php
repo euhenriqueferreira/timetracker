@@ -10,8 +10,8 @@
         <x-input.text name="task_duration" value="00:00:00" disabled/>
 
         {{-- TODO: Se for iniciar a contagem, botão normal, se for terminar, botão submit --}}
-        <button type="submit" form="form-timebar">
+        <x-button type="submit" form="form-timebar">
             <x-svg model="play" w="12" h="12"/>
-        </button>
+        </x-button>
     </div>
 </form>

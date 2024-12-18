@@ -13,7 +13,7 @@
         <ul class="space-y-4">
             @foreach ($navs as $nav)
                 <li>
-                    <x-button.link :href="route($nav['route'])" nav_link active_route='dashboard'>
+                    <x-button.link :href="route($nav['route'])" nav>
                         {{ $nav[0] }}
                         
                         <x-svg model="{{ $nav['svg_name'] }}" w="6" h="6" />
@@ -24,7 +24,7 @@
     @endif
 
     @if($logout)
-        <x-button.link nav_link active_route='profile'>
+        <x-button.link nav>
             {{ __('Logout') }}
             <x-svg model="logout" w="6" h="6" />
         </x-button.link>
