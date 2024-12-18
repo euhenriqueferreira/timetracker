@@ -7,7 +7,7 @@
     @vite('resources/css/app.css')
     <title>{{ config('app.name') }}</title>
 </head>
-<body class="bg-neutral-900 min-h-screen">
+<body class="bg-neutral-900 min-h-screen flex">
     <x-sidebar 
     title="{{ config('app.name') }}"
     :navs="[
