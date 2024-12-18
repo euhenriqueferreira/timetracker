@@ -13,7 +13,7 @@
         <ul class="space-y-4">
             @foreach ($navs as $nav)
                 <li>
-                    <x-button.link nav_link active_route='dashboard'>
+                    <x-button.link :href="route($nav['route'])" nav_link active_route='dashboard'>
                         {{ $nav[0] }}
                         
                         @include('/components/svg/' . $nav['svg_name'])

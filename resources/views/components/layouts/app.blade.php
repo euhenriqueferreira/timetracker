@@ -11,9 +11,9 @@
     <x-sidebar 
     title="{{ config('app.name') }}"
     :navs="[
-        [__('Dashboard'), 'svg_name' => 'list'], 
-        [__('History'), 'svg_name' => 'clock'], 
-        [__('Profile'), 'svg_name' => 'user'],
+        [__('Dashboard'), 'svg_name' => 'list', 'route' => 'dashboard'], 
+        [__('History'), 'svg_name' => 'clock', 'route' => 'history'], 
+        [__('Profile'), 'svg_name' => 'user', 'route' => 'dashboard'],
     ]" />
 
     <div class="p-8 h-screen flex-1">
