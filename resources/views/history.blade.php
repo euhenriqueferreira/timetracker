@@ -2,7 +2,26 @@
     <div class="mt-8 px-5">
         <h2 class="block text-3xl text-left text-neutral-200 font-normal mb-5">{{ __('All Tasks') }}</h2>
 
-        
+        <div class="my-5 h-[60px] border-y-2 border-neutral-200/80 px-[10px] flex items-center justify-between">
+            <div class="flex items-center gap-[10px]">
+                <span class="text-base font-normal text-neutral-200/50 tracking-wide">Filter tag:</span>
+
+                <select name="filter_tag" class="w-[160px] bg-neutral-800 rounded-lg text-base px-2.5 py-[5px] text-neutral-200">
+                    <option class="" value="nice">nice</option>
+                    <option value="not-nice">not-nice</option>
+                    <option value="great">great</option>
+                </select>
+            </div>
+            <form action="" class="flex items-center gap-2.5">
+                <x-input.search name="search" :placeholder="__('Search the name of a task...')" />
+
+                <x-input.check name="order_date_asc" :svgs="['calendar', 'arrow-up']" />
+                <x-input.check name="order_date_desc" :svgs="['calendar', 'arrow-down']" />
+                <x-input.check name="order_time_asc" :svgs="['clock', 'arrow-up']" />
+                <x-input.check name="order_time_desc" :svgs="['clock', 'arrow-down']" />
+            </form>
+        </div>
+
         <div class="space-y-[10px]">
             <ul class="space-y-[10px]">
 

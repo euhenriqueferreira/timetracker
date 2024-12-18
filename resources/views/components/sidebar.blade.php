@@ -16,7 +16,7 @@
                     <x-button.link :href="route($nav['route'])" nav_link active_route='dashboard'>
                         {{ $nav[0] }}
                         
-                        @include('/components/svg/' . $nav['svg_name'])
+                        <x-svg model="{{ $nav['svg_name'] }}" w="6" h="6" />
                     </x-button.link>
                 </li>
             @endforeach
@@ -26,7 +26,7 @@
     @if($logout)
         <x-button.link nav_link active_route='profile'>
             {{ __('Logout') }}
-            <x-svg.logout />
+            <x-svg model="logout" w="6" h="6" />
         </x-button.link>
     @endif
 </div>

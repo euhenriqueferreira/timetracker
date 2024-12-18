@@ -11,7 +11,7 @@
 
         {{-- TODO: Se for iniciar a contagem, botão normal, se for terminar, botão submit --}}
         <button type="submit" form="form-timebar">
-            <x-svg.play w="12" h="12"/>
+            <x-svg model="play" w="12" h="12"/>
         </button>
     </div>
 </form>
