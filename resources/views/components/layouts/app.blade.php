@@ -8,6 +8,14 @@
     <title>{{ config('app.name') }}</title>
 </head>
 <body class="bg-neutral-900 min-h-screen">
+    <x-sidebar 
+    title="{{ config('app.name') }}"
+    :navs="[
+        [__('Dashboard'), 'svg_name' => 'list'], 
+        [__('History'), 'svg_name' => 'clock'], 
+        [__('Profile'), 'svg_name' => 'user'],
+    ]" />
+
     {{ $slot }}
 </body>
 </html>
