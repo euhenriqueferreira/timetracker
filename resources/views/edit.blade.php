@@ -11,14 +11,8 @@
                 <option value="great">great</option>
             </x-input.select>
 
-            <div>
-                <label class="text-lg text-neutral-200 font-normal" for="tag">{{ __("Start Time" )}}</label>
-                <input type="datetime-local" name="datetime" id="datetime" class="w-full h-[40px] bg-neutral-800 rounded-lg text-base px-2.5 py-[5px] text-neutral-200 mt-2">
-            </div>
-            <div>
-                <label class="text-lg text-neutral-200 font-normal" for="tag">{{ __("End Time" )}}</label>
-                <input type="datetime-local" name="datetime" id="datetime" class="w-full h-[40px] bg-neutral-800 rounded-lg text-base px-2.5 py-[5px] text-neutral-200 mt-2">
-            </div>
+            <x-input.datetime name="start_time" :label="__('Start Time')" />
+            <x-input.datetime name="end_time" :label="__('End Time')" />
 
             <div class="flex gap-2.5">
                 <x-button.link withIcon delete>
