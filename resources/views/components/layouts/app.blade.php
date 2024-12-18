@@ -16,6 +16,11 @@
         [__('Profile'), 'svg_name' => 'user'],
     ]" />
 
-    {{ $slot }}
+    <div class="p-8 h-screen flex-1">
+        <x-taskbar />
+        {{ $slot }}
+    </div>
+
+  
 </body>
 </html>
