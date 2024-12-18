@@ -13,7 +13,7 @@
     :navs="[
         [__('Dashboard'), 'svg_name' => 'list', 'route' => 'dashboard'], 
         [__('History'), 'svg_name' => 'clock', 'route' => 'history'], 
-        [__('Profile'), 'svg_name' => 'user', 'route' => 'dashboard'],
+        [__('Profile'), 'svg_name' => 'user', 'route' => 'profile'],
     ]" />
 
     <div class="p-8 h-screen flex-1">

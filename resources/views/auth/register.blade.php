@@ -3,18 +3,19 @@
         <h1 class="text-center text-neutral-200 text-3xl font-bold tracking-wide">{{ config('app.name') }}</h1>
 
         <form action="" class="space-y-4" id="form-register">
-            <x-input.text name="name" :placeholder="__('Type your name here...')" formInput :label="__('Name')"/>
-            <x-input.text name="email" :placeholder="__('Type your email here...')" formInput :label="__('Email')"/>
-            <x-input.text name="password" :placeholder="__('Type your password here...')" formInput password :label="__('Password')"/>
+            <x-input type="text" name="name" :placeholder="__('Type your name here...')" :label="__('Name')"/>
+            <x-input type="text" name="email" :placeholder="__('Type your email here...')" :label="__('Email')"/>
+            <x-input type="password" name="password" :placeholder="__('Type your password here...')" :label="__('Password')"/>
+
             <div class="flex justify-between">
                 <x-button.link :href="route('login')" outline>
                     Go to login
-                    <x-svg.user color="text-neutral-200/50" />
+                    <x-svg model="user" color="text-neutral-200/50" />
                 </x-button.link>
 
                 <x-button type="submit" form="form-register" withIcon>
                     Register
-                    <x-svg.edit color="text-neutral-200" />
+                    <x-svg model="edit" color="text-neutral-200" />
                 </x-button>
             </div>
         </form>

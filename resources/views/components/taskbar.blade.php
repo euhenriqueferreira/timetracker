@@ -3,11 +3,11 @@
     <x-tag-selector />
 
     <div class="flex-1">
-        <x-input.text name="task_name" :placeholder="__('Input the task name here...')" transparent/>
+        <x-input name="task_name" :placeholder="__('Input the task name here...')" transparent/>
     </div>
 
     <div class="flex items-center gap-2.5">
-        <x-input.text name="task_duration" value="00:00:00" disabled/>
+        <x-input name="task_duration" value="00:00:00" disabled/>
 
         {{-- TODO: Se for iniciar a contagem, botão normal, se for terminar, botão submit --}}
         <x-button type="submit" form="form-timebar">

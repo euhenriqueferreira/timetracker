@@ -5,7 +5,7 @@
 ])
 
 <div class="bg-neutral-700 w-1/5 h-screen rounded-r-xl py-10 px-6 flex flex-col justify-between">
-    <x-button.link>
+    <x-button.link logo>
         <h1 class="text-center text-neutral-200 text-3xl font-bold tracking-wide">{{ $title }}</h1>
     </x-button.link>
 
@@ -13,7 +13,7 @@
         <ul class="space-y-4">
             @foreach ($navs as $nav)
                 <li>
-                    <x-button.link :href="route($nav['route'])" nav>
+                    <x-button.link :href="route($nav['route'])" nav :isActiveInRoute="$nav['route']">
                         {{ $nav[0] }}
                         
                         <x-svg model="{{ $nav['svg_name'] }}" w="6" h="6" />

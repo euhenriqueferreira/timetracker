@@ -1,4 +1,3 @@
-
 @props([
     'withIcon' => null,
     'onlyIcon' => null
