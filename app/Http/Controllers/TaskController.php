@@ -30,15 +30,36 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        // if(request()->task_name){
+        //     dd('comtaskname');
+        // }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Task $task)
-    {
-        //
+        if(! request()->task_name){
+            $request['task_name'] = __('Task without a name...');
+        }
+
+        $data = $request->validate([
+            'task_name' => ['required', 'min:3', 'max:50', 'string'],
+            'tag' => ['required'],
+            'start_time' => ['required'],
+            'task_duration' => ['required'],
+        ]);
+
+        // dd(Carbon::now());
+
+        $durationParts = explode(':', $data['task_duration']);
+        $durationInSeconds = ($durationParts[0] * 3600) + ($durationParts[1] * 60) + $durationParts[2];
+
+        Task::query()->create([
+            'user_id' => auth()->user()->id,
+            'tag_id' => Tag::query()->where('name', '=', $data['tag'])->first()->id,
+            'name' => $data['task_name'],
+            'start_time' => Carbon::parse($data['start_time'])->setTimezone('America/Sao_Paulo')->format('Y-m-d H:i:s'),
+            'duration' => $data['task_duration'],
+            'end_time' => Carbon::parse($data['start_time'])->setTimezone('America/Sao_Paulo')->addSeconds($durationInSeconds)->format('Y-m-d H:i:s')
+        ]);
+
+        return back();
     }
 
     /**

@@ -24,7 +24,7 @@
             <label class="text-lg text-neutral-200 font-normal" for="{{ $name }}">{{ $label }}</label>
         @endif
 
-        <input type="{{ $type }}" name="{{ $name }}" id="{{ $name }}" placeholder="{{ $placeholder }}" value="{{ $value }}" 
+        <input type="{{ $type }}" name="{{ $name }}" id="{{ $name }}" placeholder="{{ $placeholder }}" value="{{ $value }}" {{ $attributes }} 
             @class([
                 'bg-transparent w-full text-xl font-normal text-neutral-200 focus:outline-none placeholder:text-neutral-200/50' => $transparent,
                 'w-28 bg-transparent text-2xl text-center font-normal text-neutral-200/50 tracking-widest pointer-events-none' => $disabled,
