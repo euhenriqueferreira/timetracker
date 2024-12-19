@@ -23,7 +23,7 @@ class TagController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-            'name' => ['required', 'min:3', 'max:30'],
+            'name' => ['required', 'min:3', 'max:30', 'unique:tags'],
             'color' => ['required', 'hex-color']
         ]);
 

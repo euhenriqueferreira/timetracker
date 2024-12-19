@@ -13,15 +13,13 @@
     </div>
 
     <div class="flex gap-[5px]">
-        <form action="">
-            <x-button.link onlyIcon>
-                <x-svg model="edit" w="4" h="4"/>
-            </x-button.link>
-        </form>{{-- Edit --}}
-        <form action="">
+        <x-button.link :href="route('tasks.edit', $task)" onlyIcon>
+            <x-svg model="edit" w="4" h="4"/>
+        </x-button.link>{{-- Edit --}}
+        <x-form :action="route('tasks.delete', $task)" delete onsubmit="return confirm('{{ __('Are you sure') }}')">
             <x-button type="submit" onlyIcon>
                 <x-svg model="delete" w="4" h="4"/>
             </x-button>
-        </form>{{-- Delete --}}
+        </x-form>{{-- Delete --}}
     </div>
 </li>

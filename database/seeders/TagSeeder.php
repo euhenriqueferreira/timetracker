@@ -14,5 +14,9 @@ class TagSeeder extends Seeder
     public function run(): void
     {
         Tag::factory()->count(5)->create();
+        Tag::factory()->create([
+            'name' => 'GER',
+            'color' => 'a3a3a3',
+        ]);
     }
 }
