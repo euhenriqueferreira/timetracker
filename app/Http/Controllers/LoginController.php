@@ -9,10 +9,12 @@ use Illuminate\Validation\Rules\Password;
 
 class LoginController extends Controller
 {
+    // Call the view
     public function index(){
         return view('auth.login');
     }
 
+    // Make Login
     public function login(Request $request){
         $data = $request->validate([
             'email' => ['required', 'email', 'max:255'],

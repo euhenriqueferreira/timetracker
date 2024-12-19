@@ -2,7 +2,7 @@
     <div class="bg-neutral-700 w-full max-w-[570px] p-7 rounded-lg space-y-10">
         <h1 class="text-center text-neutral-200 text-3xl font-bold tracking-wide">{{ config('app.name') }}</h1>
 
-        <form action="" class="space-y-4" id="form-register">
+        <x-form :action="route('register')" class="space-y-4" id="form-register" post>
             <x-input type="text" name="name" :placeholder="__('Type your name here...')" :label="__('Name')"/>
             <x-input type="text" name="email" :placeholder="__('Type your email here...')" :label="__('Email')"/>
             <x-input type="password" name="password" :placeholder="__('Type your password here...')" :label="__('Password')"/>
@@ -18,6 +18,6 @@
                     <x-svg model="edit" color="text-neutral-200" />
                 </x-button>
             </div>
-        </form>
+        </x-form>
     </div>
 </x-layouts.guest>
