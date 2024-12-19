@@ -1,7 +1,8 @@
 @props([
     'value' => 'GER',
     'tags' => [],
-    'edit' => null
+    'edit' => null,
+    'tag' => null,
 ])
 
 @if($edit)
@@ -38,8 +39,8 @@
         </div>
     </div>
 @else
-    <div class="bg-neutral-800 w-[90px] h-7 flex items-center justify-center rounded-md">
-        <span class="text-neutral-200/50 text-xs font-normal uppercase">{{ $value }}</span>
+    <div class="w-[90px] h-7 flex items-center justify-center rounded-md" style="background-color: {{ $tag->color }}">
+        <span class="text-neutral-200/50 text-xs font-normal uppercase">{{ $tag->name }}</span>
         {{-- TODO: Sistema de Tags --}}
     </div>
 @endif

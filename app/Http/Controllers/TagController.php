@@ -31,7 +31,7 @@ class TagController extends Controller
             return back()->with('message', __('Choose a lighter color'));
         }
 
-        if($data['color'] > '#bbbbbb'){
+        if($data['color'] > '#aaaaaa'){
             return back()->with('message', __('Choose a darker color'));
         }
 
