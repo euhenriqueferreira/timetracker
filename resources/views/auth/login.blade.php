@@ -3,7 +3,7 @@
         <h1 class="text-center text-neutral-200 text-3xl font-bold tracking-wide">{{ config('app.name') }}</h1>
 
         <x-form :action="route('login')" class="space-y-4" id="form-login"  post>
-            <x-input type="text" name="email" :placeholder="__('Type your email here...')" :label="__('Email')"/>
+            <x-input type="text" name="email" :placeholder="__('Type your email here...')" :label="__('Email')" :value="old('email')" />
             <x-input type="password" name="password" :placeholder="__('Type your password here...')" password :label="__('Password')"/>
 
             @if(session()->get('message'))

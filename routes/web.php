@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\TagController;
 use App\Http\Middleware\AuthMiddleware;
 use App\Http\Middleware\GuestMiddleware;
 use Illuminate\Support\Facades\Route;
@@ -11,7 +13,13 @@ Route::get('/', function () {
 })->name('welcome');
 
 Route::middleware(AuthMiddleware::class)->group(function(){
-    Route::view('/dashboard', 'dashboard')->name('dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+    Route::get('/tags/create', [TagController::class, 'create'])->name('tags.create');
+    Route::post('/tags/create', [TagController::class, 'store']);
+
+    Route::get('/tags/{tag}/delete', [TagController::class, 'destroy'])->name('tags.delete');
+
     Route::view('/history', 'history')->name('history');
     Route::view('/profile', 'profile')->name('profile');
     Route::view('/edit', 'edit')->name('edit');

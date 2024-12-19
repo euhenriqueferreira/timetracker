@@ -3,8 +3,8 @@
         <h1 class="text-center text-neutral-200 text-3xl font-bold tracking-wide">{{ config('app.name') }}</h1>
 
         <x-form :action="route('register')" class="space-y-4" id="form-register" post>
-            <x-input type="text" name="name" :placeholder="__('Type your name here...')" :label="__('Name')"/>
-            <x-input type="text" name="email" :placeholder="__('Type your email here...')" :label="__('Email')"/>
+            <x-input type="text" name="name" :placeholder="__('Type your name here...')" :label="__('Name')" :value="old('name')"/>
+            <x-input type="text" name="email" :placeholder="__('Type your email here...')" :label="__('Email')" :value="old('email')"/>
             <x-input type="password" name="password" :placeholder="__('Type your password here...')" :label="__('Password')"/>
 
             <div class="flex justify-between">

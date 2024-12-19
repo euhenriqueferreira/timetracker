@@ -1,7 +1,9 @@
 <x-layouts.app>
+    <x-taskbar :tags="$tags" />
+
     <div class="mt-8 px-5">
         <h2 class="block text-3xl text-left text-neutral-200 font-normal mb-5">{{ __('Latest Tasks') }}</h2>
-
+        
         <div class="space-y-[10px]">
             <ul class="space-y-[10px]">
                 <li class="h-[50px] flex items-center justify-between gap-[25px] px-5 border-b-2 border-white/10">
