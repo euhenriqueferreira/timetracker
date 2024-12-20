@@ -3,6 +3,7 @@
     'label' => null,
     'currentTagName' => null,
     'currentTagColor' => null,
+    'form' => null,
 ])
 
 
@@ -10,15 +11,23 @@
     <div>
         <label class="text-lg text-neutral-200 font-normal block mb-2">{{ $label }}</label>
 @endif
-        <div x-data="{ open: false, selectedTag: '{{ $currentTagName ?? 'GER' }}', selectedColor: '{{ $currentTagColor ?? '#a3a3a3' }}' }" {{ $attributes->class("relative") }}>
-            
-            <input type="hidden" name="tag" :value="selectedTag">
-            
+        <div x-data="{ open: false, selectedTag: '{{ $currentTagName ?? 'GER' }}', selectedColor: '{{ $currentTagColor ?? '#a3a3a3' }}' }" class="relative {{ $form ? 'flex items-center space-x-2' : ''}}">
             <div class="{{ $label ? 'min-w-[90px] w-fit' : 'w-[90px]' }} h-7 flex items-center justify-center rounded-md cursor-pointer px-2"
                 :style="{ backgroundColor: selectedColor || '#171717' }"
                 @click="open = ! open">
                 <span class="text-neutral-800 text-xs font-bold uppercase whitespace-nowrap text-ellipsis overflow-hidden" x-text="selectedTag" :title="selectedTag"></span>
             </div>
+
+            @if($form)
+                <x-form x-ref="form" >
+                    <input type="hidden" name="tag" :value="selectedTag" {{ $attributes }}>
+                    <x-button type="submit" onlyIcon>
+                        <x-svg model="search" w="4" h="4" />
+                    </x-button>
+                </x-form>
+            @else
+                <input type="hidden" name="tag" :value="selectedTag" {{ $attributes }}>
+            @endif
 
             <div x-show="open" @click.outside="open = false" class="bg-neutral-800 absolute w-fit min-w-28 max-w-80 rounded-lg p-2 top-[105%]">
                 <ul class="space-y-1.5 mb-2">

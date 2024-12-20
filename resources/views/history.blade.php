@@ -7,12 +7,17 @@
         <div class="my-5 h-[60px] border-y-2 border-neutral-200/80 px-[10px] flex items-center justify-between">
             <div class="flex items-center gap-[10px]">
                 <span class="text-base font-normal text-neutral-200/50 tracking-wide">Filter tag:</span>
-
-                <x-input.select name="filter_tag" class="w-[200px]">
-                    <option value="nice">nice</option>
-                    <option value="not-nice">not-nice</option>
-                    <option value="great">great</option>
-                </x-input.select>
+                
+                @if($tagFilter)
+                    <x-tag-selector :tags="$tags" :currentTagName="$tagFilter->name" :currentTagColor="$tagFilter->color" form />
+                    <x-form>
+                        <x-button type="submit" onlyIcon>
+                            <x-svg model="x-mark" w="4" h="4" />
+                        </x-button>
+                    </x-form>
+                @else
+                    <x-tag-selector :tags="$tags" form />
+                @endif
             </div>
             <div class="flex items-center gap-2.5">
                 <x-form>

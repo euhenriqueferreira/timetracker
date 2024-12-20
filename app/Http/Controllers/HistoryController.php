@@ -16,6 +16,7 @@ class HistoryController extends Controller
     {
         
         $search = request()->search;
+        $tagFilter = Tag::query()->where('name', '=', request()->tag)->first();
 
         $currentOrder = array_keys(array_filter(request()->all(), function($key) {
             return strpos($key, 'order') !== false;
@@ -27,6 +28,7 @@ class HistoryController extends Controller
         })
         ->join('tags', 'tasks.tag_id', '=', 'tags.id')
         ->where('user_id', '=', auth()->user()->id)
+        ->when($tagFilter, fn($query) => $query->where('tag_id', '=', $tagFilter->id))
         ->select('tasks.*', 'tags.name as tag_name', 'tags.color as tag_color') // Correção: o select está sendo chamado corretamente na query
         ->when(request()->has('order_date_asc'), fn($query) => $query->orderBy('end_time', 'asc'))
         ->when(request()->has('order_time_desc'), fn($query) => $query->orderBy('duration', 'desc'))
@@ -43,6 +45,7 @@ class HistoryController extends Controller
             'tasks' => $groupedTasks,
             'search' => $search,
             'currentOrder' => $currentOrder ? $currentOrder[0] : null,
+            'tagFilter' => $tagFilter,
         ]);
     }
 }
