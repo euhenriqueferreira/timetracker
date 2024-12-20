@@ -5,7 +5,7 @@
         <h2 class="block text-3xl text-left text-neutral-200 font-normal mb-5">{{ __('Latest Tasks') }}</h2>
         <div class="space-y-[10px]">
             <ul class="space-y-[10px]">
-                @foreach ($tasks as $keyDate => $date)
+                @forelse ($tasks as $keyDate => $date)
                     @foreach ($date as $index => $task)
                         <x-task :task="$task" />
                     @endforeach                 
@@ -17,7 +17,9 @@
                     @else
                         <x-date-divisor :value="$keyDate" />
                     @endif
-                @endforeach
+                @empty
+                    <x-alert :value="__('You don\'t have any tasks registered.')" svg="info" info/>
+                @endforelse
             </ul>
         </div>
     </div>

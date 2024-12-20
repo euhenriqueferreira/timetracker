@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Tag;
 use App\Models\Task;
 use Carbon\Carbon;
+use Carbon\CarbonInterval;
 use Illuminate\Http\Request;
 
 class TaskController extends Controller
@@ -30,10 +31,6 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
-        // if(request()->task_name){
-        //     dd('comtaskname');
-        // }
-
         if(! request()->task_name){
             $request['task_name'] = __('Task without a name...');
         }
@@ -45,8 +42,6 @@ class TaskController extends Controller
             'task_duration' => ['required'],
         ]);
 
-        // dd(Carbon::now());
-
         $durationParts = explode(':', $data['task_duration']);
         $durationInSeconds = ($durationParts[0] * 3600) + ($durationParts[1] * 60) + $durationParts[2];
 
@@ -54,9 +49,9 @@ class TaskController extends Controller
             'user_id' => auth()->user()->id,
             'tag_id' => Tag::query()->where('name', '=', $data['tag'])->first()->id,
             'name' => $data['task_name'],
-            'start_time' => Carbon::parse($data['start_time'])->setTimezone('America/Sao_Paulo')->format('Y-m-d H:i:s'),
+            'start_time' => Carbon::createFromFormat('d/m/Y, H:i:s', $data['start_time'])->format('Y-m-d H:i:s'),
             'duration' => $data['task_duration'],
-            'end_time' => Carbon::parse($data['start_time'])->setTimezone('America/Sao_Paulo')->addSeconds($durationInSeconds)->format('Y-m-d H:i:s')
+            'end_time' =>  Carbon::createFromFormat('d/m/Y, H:i:s', $data['start_time'])->addSeconds($durationInSeconds)->format('Y-m-d H:i:s')
         ]);
 
         return back();
@@ -69,6 +64,9 @@ class TaskController extends Controller
     {
         $currentTag = Tag::query()->where('id', '=', $task->tag_id)->first();
 
+        $task['start_time'] = $dataFormatada = Carbon::parse($task['start_time'])->format('Y-m-d\TH:i');
+        $task['end_time'] = $dataFormatada = Carbon::parse($task['end_time'])->format('Y-m-d\TH:i');
+     
         return view('tasks.edit', [
             'tags' => Tag::all(),
             'task' => $task,
@@ -88,11 +86,11 @@ class TaskController extends Controller
             'end_time' => ['required']
         ]);
 
+
         $taskStart = Carbon::parse($data['start_time']);
         $taskEnd = Carbon::parse($data['end_time']);
         $diff = $taskEnd->diffInSeconds($taskStart);
-        $duration =  Carbon::createFromTimestamp($diff)->format('H:i:s');
-        
+        $duration =  CarbonInterval::seconds($diff)->cascade()->format('%H:%I:%S');
 
         $task->name = $data['name'];
         $task->tag_id = Tag::query()->where('name', '=', $data['tag'])->first()->id;

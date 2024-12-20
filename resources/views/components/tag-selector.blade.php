@@ -10,7 +10,7 @@
     <div>
         <label class="text-lg text-neutral-200 font-normal block mb-2">{{ $label }}</label>
 @endif
-        <div x-data="{ open: false, selectedTag: '{{ $currentTagName ?? 'GER' }}', selectedColor: '{{ $currentTagColor ?? '#a3a3a3' }}' }" class="relative">
+        <div x-data="{ open: false, selectedTag: '{{ $currentTagName ?? 'GER' }}', selectedColor: '{{ $currentTagColor ?? '#a3a3a3' }}' }" {{ $attributes->class("relative") }}>
             
             <input type="hidden" name="tag" :value="selectedTag">
             

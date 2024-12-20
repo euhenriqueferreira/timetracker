@@ -2,7 +2,7 @@
     'tags' => []
 ])
 
-<x-form :action="route('tasks.create')" post class="bg-neutral-700 h-[70px] rounded-lg px-5 py-2.5 flex items-center justify-between gap-5 hover:scale-[1.015] transition" id="form-timebar"
+<x-form :action="route('tasks.create')" post class="relative z-30 bg-neutral-800 border border-neutral-200/60 h-[70px] rounded-lg px-5 py-2.5 flex items-center justify-between gap-5 hover:scale-[1.015] transition" id="form-timebar"
     x-data="{ 
         seconds: 0, 
         counter: false,
@@ -21,7 +21,7 @@
         },
         startCounter() { 
             this.counter = true;
-            this.startTime = new Date().toISOString();
+            this.startTime = new Date().toLocaleString();
             console.log(new Date());
             this.interval = setInterval(() => { 
                 this.seconds++; 
