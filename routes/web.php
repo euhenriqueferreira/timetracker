@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\HistoryController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\TagController;
@@ -32,8 +33,12 @@ Route::middleware(AuthMiddleware::class)->group(function(){
     Route::put('/tasks/{task}/edit', [TaskController::class, 'update']);
     Route::delete('/tasks/{task}/delete', [TaskController::class, 'destroy'])->name('tasks.delete');
     // ------------------------------------------------------------------
+    
+    // History
+    Route::get('/history', HistoryController::class)->name('history');
+    // ------------------------------------------------------------------
 
-    Route::view('/history', 'history')->name('history');
+
     Route::view('/profile', 'profile')->name('profile');
     // Route::view('/edit', 'edit')->name('edit');
 });

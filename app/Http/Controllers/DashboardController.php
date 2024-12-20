@@ -17,14 +17,12 @@ class DashboardController extends Controller
         ->limit(7)
         ->get();
 
-        // dd($tasks);
-
-        $groupedTasks = $tasks->groupBy(function($tag) {
+        $groupedTasks = $tasks->groupBy(function ($tag) {
             return Carbon::parse($tag->end_time)->format('Y-m-d');
-        });
-        
-
-        // dd($groupedTasks);
+        })->sortKeysDesc()
+          ->map(function ($group) {
+              return $group->sortByDesc('end_time'); 
+          });
 
         return view('dashboard', [
             'tags' => Tag::all(),

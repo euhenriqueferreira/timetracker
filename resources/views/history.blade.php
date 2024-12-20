@@ -1,4 +1,6 @@
 <x-layouts.app>
+    <x-taskbar :tags="$tags" />
+
     <div class="mt-8 px-5">
         <h2 class="block text-3xl text-left text-neutral-200 font-normal mb-5">{{ __('All Tasks') }}</h2>
 
@@ -12,145 +14,30 @@
                     <option value="great">great</option>
                 </x-input.select>
             </div>
-            <form action="" class="flex items-center gap-2.5">
-                <x-input name="search" :placeholder="__('Search the name of a task...')" search/>
+            <div class="flex items-center gap-2.5">
+                <x-form>
+                    <x-input name="search" :placeholder="__('Search the name of a task...')" :value="old('search', $search)" search/>
+                </x-form>
 
-                <x-input.check name="order_date_asc" :svgs="['calendar', 'arrow-up']" />
-                <x-input.check name="order_date_desc" :svgs="['calendar', 'arrow-down']" />
-                <x-input.check name="order_time_asc" :svgs="['clock', 'arrow-up']" />
-                <x-input.check name="order_time_desc" :svgs="['clock', 'arrow-down']" />
-            </form>
-        </div>
+                {{-- @dump($currentOrder) --}}
+                <x-form x-data x-ref="form">
+                    <x-input.check name="order_date_desc" :svgs="['calendar', 'arrow-down']" @click="$refs.form.submit()" :active="$currentOrder === 'order_date_desc' ? true : false" />
+                </x-form>
 
-        <div class="space-y-[10px]">
-            <ul class="space-y-[10px]">
-                <li class="h-[50px] flex items-center justify-between gap-[25px] px-5 border-b-2 border-white/10">
-                    <x-tag-selector />
+                <x-form x-data x-ref="form">
+                    <x-input.check name="order_date_asc" :svgs="['calendar', 'arrow-up']" @click="$refs.form.submit()" :active="$currentOrder === 'order_date_asc' ? true : false" />
+                </x-form>
 
-                    <h3 class="flex-1 text-base text-neutral-200 font-normal">Task name</h3>
+                <x-form x-data x-ref="form">
+                    <x-input.check name="order_time_desc" :svgs="['clock', 'arrow-down']" @click="$refs.form.submit()" :active="$currentOrder === 'order_time_desc' ? true : false" />
+                </x-form>
 
-                    <div class="flex items-end gap-[10px]">
-                        <span class="text-base font-normal text-neutral-200/50">Time:</span>
-                        <span class="text-base font-normal text-neutral-200">00:00:00</span>
-                    </div>
-
-                    <div class="flex gap-[5px]">
-                        <form action="">
-                            <x-button.link onlyIcon>
-                                <x-svg model="edit" w="4" h="4"/>
-                            </x-button.link>
-                        </form>{{-- Edit --}}
-                        <form action="">
-                            <x-button type="submit" onlyIcon>
-                                <x-svg model="delete" w="4" h="4"/>
-                            </x-button>
-                        </form>{{-- Delete --}}
-                    </div>
-                </li>
-                <li class="h-[50px] flex items-center justify-between gap-[25px] px-5 border-b-2 border-white/10">
-                    <x-tag-selector />
-
-                    <h3 class="flex-1 text-base text-neutral-200 font-normal">Task name</h3>
-
-                    <div class="flex items-end gap-[10px]">
-                        <span class="text-base font-normal text-neutral-200/50">Time:</span>
-                        <span class="text-base font-normal text-neutral-200">00:00:00</span>
-                    </div>
-
-                    <div class="flex gap-[5px]">
-                        <form action="">
-                            <x-button.link onlyIcon>
-                                <x-svg model="edit" w="4" h="4"/>
-                            </x-button.link>
-                        </form>{{-- Edit --}}
-                        <form action="">
-                            <x-button type="submit" onlyIcon>
-                                <x-svg model="delete" w="4" h="4"/>
-                            </x-button>
-                        </form>{{-- Delete --}}
-                    </div>
-                </li>
-                <li class="h-[50px] flex items-center justify-between gap-[25px] px-5 border-b-2 border-white/10">
-                    <x-tag-selector />
-
-                    <h3 class="flex-1 text-base text-neutral-200 font-normal">Task name</h3>
-
-                    <div class="flex items-end gap-[10px]">
-                        <span class="text-base font-normal text-neutral-200/50">Time:</span>
-                        <span class="text-base font-normal text-neutral-200">00:00:00</span>
-                    </div>
-
-                    <div class="flex gap-[5px]">
-                        <form action="">
-                            <x-button.link onlyIcon>
-                                <x-svg model="edit" w="4" h="4"/>
-                            </x-button.link>
-                        </form>{{-- Edit --}}
-                        <form action="">
-                            <x-button type="submit" onlyIcon>
-                                <x-svg model="delete" w="4" h="4"/>
-                            </x-button>
-                        </form>{{-- Delete --}}
-                    </div>
-                </li>
-            </ul>
-            <div class="flex items-center justify-between gap-[10px]">
-                <p class="text-lg font-normal text-neutral-200/70">Today</p>
-                <div class="h-[1px] flex-1 bg-neutral-200/70 mt-1"></div>
+                <x-form x-data x-ref="form">
+                    <x-input.check name="order_time_asc" :svgs="['clock', 'arrow-up']" @click="$refs.form.submit()" :active="$currentOrder === 'order_time_asc' ? true : false" />
+                </x-form>
             </div>
+        </div>{{-- Filters --}}
 
-            <ul class="space-y-[10px]">
-                <li class="h-[50px] flex items-center justify-between gap-[25px] px-5 border-b-2 border-white/10">
-                    <x-tag-selector />
-
-                    <h3 class="flex-1 text-base text-neutral-200 font-normal">Task name</h3>
-
-                    <div class="flex items-end gap-[10px]">
-                        <span class="text-base font-normal text-neutral-200/50">Time:</span>
-                        <span class="text-base font-normal text-neutral-200">00:00:00</span>
-                    </div>
-
-                    <div class="flex gap-[5px]">
-                        <form action="">
-                            <x-button.link onlyIcon>
-                                <x-svg model="edit" w="4" h="4"/>
-                            </x-button.link>
-                        </form>{{-- Edit --}}
-                        <form action="">
-                            <x-button type="submit" onlyIcon>
-                                <x-svg model="delete" w="4" h="4"/>
-                            </x-button>
-                        </form>{{-- Delete --}}
-                    </div>
-                </li>
-                <li class="h-[50px] flex items-center justify-between gap-[25px] px-5 border-b-2 border-white/10">
-                    <x-tag-selector />
-
-                    <h3 class="flex-1 text-base text-neutral-200 font-normal">Task name</h3>
-
-                    <div class="flex items-end gap-[10px]">
-                        <span class="text-base font-normal text-neutral-200/50">Time:</span>
-                        <span class="text-base font-normal text-neutral-200">00:00:00</span>
-                    </div>
-
-                    <div class="flex gap-[5px]">
-                        <form action="">
-                            <x-button.link onlyIcon>
-                                <x-svg model="edit" w="4" h="4"/>
-                            </x-button.link>
-                        </form>{{-- Edit --}}
-                        <form action="">
-                            <x-button type="submit" onlyIcon>
-                                <x-svg model="delete" w="4" h="4"/>
-                            </x-button>
-                        </form>{{-- Delete --}}
-                    </div>
-                </li>
-            </ul>
-            <div class="flex items-center justify-between gap-[10px]">
-                <p class="text-lg font-normal text-neutral-200/70">Yesterday</p>
-                <div class="h-[1px] flex-1 bg-neutral-200/70 mt-1"></div>
-            </div>
-        </div>
+        <x-task-list :tasks="$tasks" />
     </div>
 </x-layouts.app>
