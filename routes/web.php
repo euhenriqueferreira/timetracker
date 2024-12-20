@@ -1,15 +1,18 @@
 <?php
 
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\HistoryController;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TagController;
+
+use App\Http\Middleware\AuthMiddleware;
+use App\Http\Controllers\TaskController;
+use App\Http\Middleware\GuestMiddleware;
+
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
+use App\Http\Controllers\HistoryController;
 use App\Http\Controllers\RegisterController;
-use App\Http\Controllers\TagController;
-use App\Http\Controllers\TaskController;
-use App\Http\Middleware\AuthMiddleware;
-use App\Http\Middleware\GuestMiddleware;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ProfileController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -39,11 +42,15 @@ Route::middleware(AuthMiddleware::class)->group(function(){
     Route::get('/history', HistoryController::class)->name('history');
     // ------------------------------------------------------------------
     
+    // Profile
+    Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
+    Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    // ------------------------------------------------------------------
+
     // Logout
     Route::get('/logout', LogoutController::class)->name('logout');
     // ------------------------------------------------------------------
 
-    Route::view('/profile', 'profile')->name('profile');
     // Route::view('/edit', 'edit')->name('edit');
 });
 
