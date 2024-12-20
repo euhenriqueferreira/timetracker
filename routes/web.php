@@ -3,6 +3,7 @@
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HistoryController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\TaskController;
@@ -37,7 +38,10 @@ Route::middleware(AuthMiddleware::class)->group(function(){
     // History
     Route::get('/history', HistoryController::class)->name('history');
     // ------------------------------------------------------------------
-
+    
+    // Logout
+    Route::get('/logout', LogoutController::class)->name('logout');
+    // ------------------------------------------------------------------
 
     Route::view('/profile', 'profile')->name('profile');
     // Route::view('/edit', 'edit')->name('edit');

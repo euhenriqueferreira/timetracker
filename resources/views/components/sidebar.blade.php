@@ -4,7 +4,7 @@
     'logout' => true,
 ])
 
-<div class="h-screen w-1/5 py-4 pl-4">
+<div class="h-screen w-1/5 py-4j pl-4">
     <div class="bg-neutral-800 w-full h-full rounded-xl py-10 px-6 flex flex-col justify-between border border-neutral-200/60">
         <x-button.link logo>
             <h1 class="text-center text-neutral-200 text-3xl font-bold tracking-wide">{{ $title }}</h1>
@@ -25,7 +25,7 @@
         @endif
     
         @if($logout)
-            <x-button.link nav>
+            <x-button.link :href="route('logout')" onclick="return confirm('{{ __('Are you sure you want to Logout?') }}')" nav>
                 {{ __('Logout') }}
                 <x-svg model="logout" w="6" h="6" />
             </x-button.link>
