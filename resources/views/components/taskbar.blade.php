@@ -2,7 +2,7 @@
     'tags' => []
 ])
 
-<x-form :action="route('tasks.create')" post class="relative z-30 bg-neutral-800 border border-neutral-200/60 h-[70px] rounded-lg px-5 py-2.5 flex items-center justify-between gap-5 hover:scale-[1.015] transition" id="form-timebar"
+<x-form :action="route('tasks.create')" post class="shadow-2xl relative z-30 bg-neutral-800 border border-neutral-200/60 h-[70px] rounded-lg px-5 py-2.5 flex items-center justify-between gap-5 hover:scale-[1.015] transition" id="form-timebar"
     x-data="{ 
         seconds: 0, 
         counter: false,
@@ -44,7 +44,6 @@
     <div class="flex items-center gap-2.5">
         <x-input name="task_duration" x-bind:value="formattedTime()" disabled/>
 
-        {{-- TODO: Se for iniciar a contagem, botão normal, se for terminar, botão submit --}}
         <x-button x-show="!counter"  @click.prevent="startCounter()">
             <x-svg model="play" w="12" h="12"/>
         </x-button>

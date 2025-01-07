@@ -29,7 +29,7 @@
                 <input type="hidden" name="tag" :value="selectedTag" {{ $attributes }}>
             @endif
 
-            <div x-show="open" @click.outside="open = false" class="bg-neutral-800 absolute w-fit min-w-28 max-w-80 rounded-lg p-2 top-[105%]">
+            <div x-show="open" @click.outside="open = false" style="display: none" class="bg-neutral-800 absolute w-fit min-w-28 max-w-80 rounded-lg p-2 top-[105%]">
                 <ul class="space-y-1.5 mb-2">
                     <li class="h-[34px] flex items-center text-neutral-800 rounded-md px-1 py-[3px]  text-xs font-bold cursor-pointer uppercase whitespace-nowrap" style="background-color: #a3a3a3"
                         @click="selectedTag = 'GER'; selectedColor = '#a3a3a3'; open = false">

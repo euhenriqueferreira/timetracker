@@ -1,5 +1,5 @@
 <x-layouts.guest>
-    <div class="bg-neutral-700 w-full max-w-[570px] p-7 rounded-lg space-y-10">
+    <div class="border-2 border-neutral-200 w-full max-w-[570px] p-7 rounded-lg space-y-10">
         <h1 class="text-center text-neutral-200 text-3xl font-bold tracking-wide">{{ config('app.name') }}</h1>
 
         <x-form :action="route('login')" class="space-y-4" id="form-login"  post>

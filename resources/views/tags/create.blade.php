@@ -6,7 +6,7 @@
 
         <x-form :action="route('tags.create')" class="mt-14 space-y-4" id="form-create-tag" post>
             <x-input type="text" name="name" :placeholder="__('Type the tag name here...')" formInput :label="__('Tag Name')" :value="old('name')"/>
-            <x-input type="color" name="color" :label="__('Tag Color')"  :value="old('color')"/>
+            <x-input type="color" name="color" :label="__('Tag Color')" :value="old('color')"/>
             
             @if(session()->get('message'))
                 <span class="text-red-400 text-sm font-normal">{{ session()->get('message') }}</span>
